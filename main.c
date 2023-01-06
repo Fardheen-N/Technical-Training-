@@ -12,11 +12,11 @@ struct node * createNode(int data){
     return newNode;
 }
 
-void append(struct node ** headAddress,int data){
+void append(struct node ** head,int data){
     struct node * newNode = createNode(data);
-    struct node * temp = *headAddress;
+    struct node * temp = *head;
     if(temp == NULL){
-        *headAddress = newNode;
+        *head = newNode;
     } else {
         while(temp->next!=NULL){
             temp = temp->next;
@@ -26,25 +26,25 @@ void append(struct node ** headAddress,int data){
     
 }
 
-void insertAtTheBegining(struct node ** headAddress,int data){
+void insertAtTheBegining(struct node ** head,int data){
     struct node * newNode = createNode(data);
-    if(*headAddress == NULL){
-        *headAddress = newNode;
+    if(*head == NULL){
+        *head = newNode;
     } else {
-        newNode->next = *headAddress;
-        *headAddress = newNode;
+        newNode->next = *head;
+        *head = newNode;
     }
 }
-void insertAtSpecificPosition(struct node ** headAddress,int data, int pos){
+void insertAtSpecificPosition(struct node ** head,int data, int pos){
     struct node * newNode = createNode(data);
     int tpos = 1;
-    if(*headAddress == NULL && tpos == pos){
-        *headAddress = newNode;
+    if(*head == NULL && tpos == pos){
+        *head = newNode;
     } else if(tpos == pos){
-        newNode->next = *headAddress;
-        *headAddress = newNode;
+        newNode->next = *head;
+        *head = newNode;
     } else{
-        struct node * temp = *headAddress;
+        struct node * temp = *head;
         while(temp->next!= NULL && tpos != pos-1){
             temp = temp->next;
             tpos++;
@@ -54,12 +54,12 @@ void insertAtSpecificPosition(struct node ** headAddress,int data, int pos){
     }
 }
 
-void deleteAtLast(struct node ** headAddress){
-    struct node * temp = *headAddress;
-    if(*headAddress == NULL){
+void deleteAtLast(struct node ** head){
+    struct node * temp = *head;
+    if(*head == NULL){
         return;
-    } else if((*headAddress)->next == NULL){
-        *headAddress = NULL;
+    } else if((*head)->next == NULL){
+        *head = NULL;
         free(temp);
     } else {
         struct node * prev = NULL;        
